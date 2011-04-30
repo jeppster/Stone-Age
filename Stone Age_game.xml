@@ -1,0 +1,499 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<game xml_version="1.4">
+  <sides paths="Stone Age_board.png">
+    <board>Main board</board>
+  </sides>
+  <sides paths="Stone Age_CivCardBoard.png">
+    <board edge="1" position="0.45">Civ Cards</board>
+  </sides>
+  <sides paths="Stone Age_Player1Board.png">
+    <board edge="0" position="0.85">Player 1</board>
+  </sides>
+  <sides paths="Stone Age_Player2Board.png">
+    <board edge="2" position="0.38">Player 2</board>
+  </sides>
+  <!--Begin Main Board Locations-->
+  <!---->
+  <!---->
+  <!--Begin Tool Locations (loc_tool_x)-->
+  <location_type type="stack">
+    <location_display type="count" offset_x="0" offset_y="45" show_empty="0" font_size="24">
+      <size width="50" height="50">
+        <corner_coord board="0" x="502" y="374">
+          <location>loc_tool_1</location>
+        </corner_coord>
+        <corner_coord board="0" x="591" y="374">
+          <location>loc_tool_2</location>
+        </corner_coord>
+      </size>
+    </location_display>
+  </location_type>
+  <!--End Tool Locations-->
+  <!---->
+  <!---->
+  <!--Begin Food Locations (loc_food_xx e.g. 10,5)-->
+  <location_type type="stack">
+    <size width="40" height="40">
+      <corner_coord board="0" x="15" y="15">
+        <location>loc_food_10</location>
+      </corner_coord>
+      <corner_coord board="0" x="75" y="15">
+        <location>loc_food_5</location>
+      </corner_coord>
+      <corner_coord board="0" x="30" y="70">
+        <location>loc_food_2</location>
+      </corner_coord>
+      <corner_coord board="0" x="90" y="70">
+        <location>loc_food_1</location>
+      </corner_coord>
+    </size>
+  </location_type>
+  <!--End Food Locations-->
+  <!---->
+  <!---->
+  <!--Begin Meeple Starting Locations (loc_meeple_x e.g. red,blue)-->
+  <location_type type="stack">
+    <location_display type="count" offset_x="0" offset_y="35" show_empty="0" font_size="24">
+      <size width="49" height="35">
+        <corner_coord board="0" x="353" y="410">
+          <location>loc_meeple_red</location>
+        </corner_coord>
+        <corner_coord board="0" x="393" y="410">
+          <location>loc_meeple_blue</location>
+        </corner_coord>
+      </size>
+    </location_display>
+  </location_type>
+  <!--End Meeple Locations-->
+  <!---->
+  <!---->
+  <!--Begin Dice Locations (loc_dice_x_0 use zero based e.g. 0-6)-->
+  <location_type type="cell">
+    <size width="50" height="50">
+      <corner_coord board="0" x="665" y="400">
+        <location rows="1" cols="7">loc_dice</location>
+      </corner_coord>
+    </size>
+    <size width="80" height="50">
+      <corner_coord board="0" x="665" y="340">
+        <location>loc_dice_roller</location>
+      </corner_coord>
+    </size>
+  </location_type>
+  <!--End Dice Locations-->
+  <!---->
+  <!---->
+  <!--Begin Hut Locations (loc_huts_draw) at 1030x0-->
+  <location_type type="stack">
+    <size width="92" height="112">
+      <corner_coord board="0" x="1030" y="0">
+        <location>loc_huts_draw</location>
+      </corner_coord>
+    </size>
+    <size width="112" height="92">
+      <location_display type="count" show_empty="0">
+        <corner_coord board="2" x="503" y="2">
+          <location_in_action action="set_rotation" args="-90">
+            <location>loc_huts_player1</location>
+          </location_in_action>
+        </corner_coord>
+        <corner_coord board="3" x="2" y="2">
+          <location_in_action action="set_rotation" args="90">
+            <location>loc_huts_player2</location>
+          </location_in_action>
+        </corner_coord>
+      </location_display>
+    </size>
+  </location_type>
+  <!--End Hut Locations-->
+  <!---->
+  <!---->
+  <!--Begin Main Free Canvas-->
+  <location_type type="free">
+    <size width="1024" height="768">
+      <corner_coord board="0" x="0" y="0">
+        <location>MainCanvas</location>
+      </corner_coord>
+    </size>
+  </location_type>
+  <!--End Free Canvas-->
+  <!---->
+  <!---->
+  <!--END MAIN BOARD LOCATIONS-->
+  <!---->
+  <!---->
+  <!--Begin Civ Card Board Locations (loc_civcard_draw) on board 1 at 0x0-->
+  <location_type type="stack">
+    <size width="115" height="170">
+      <location_out_action action="increment_rotation" args="180">
+        <location_out_action action="increment_side" args="cap">
+          <corner_coord board="1" x="0" y="0">
+            <location>loc_civcard_draw</location>
+          </corner_coord>
+        </location_out_action>
+      </location_out_action>
+    </size>
+    <size width="167" height="109">
+      <location_display show_empty="0" type="count">
+        <corner_coord board="2" x="1" y="1">
+          <location_in_action action="set_rotation" args="-90">
+            <location cols="3" rows="2">loc_civcard_player1</location>
+          </location_in_action>
+        </corner_coord>
+        <corner_coord board="3" x="115" y="1">
+          <location_in_action action="set_rotation" args="90">
+            <location cols="3" rows="2">loc_civcard_player2</location>
+          </location_in_action>
+        </corner_coord>
+      </location_display>
+    </size>
+  </location_type>
+  <!--End Civ Card Board Locations-->
+  <!---->
+  <!---->
+  <!---->
+  <!--BEGIN PIECES-->
+  <!--BEGIN PIECES-->
+  <!--BEGIN PIECES-->
+  <!--Begin Hut/Civ Card Pieces-->
+  <single_tap action="increment_side" args="wrap">
+    <triple_tap action="send_to_back" args="">
+      <quad_tap action="shuffle_location">
+        <initial_location name="loc_civcard_draw">
+          <initial_rotation value="180">
+            <initial_side value="0">
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_1.png">
+                <piece>piece_CivCards1</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_2.png">
+                <piece>piece_CivCards2</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_3.png">
+                <piece>piece_CivCards3</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_4.png">
+                <piece>piece_CivCards4</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_5.png">
+                <piece>piece_CivCards5</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_6.png">
+                <piece>piece_CivCards6</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_7.png">
+                <piece>piece_CivCards7</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_8.png">
+                <piece>piece_CivCards8</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_9.png">
+                <piece>piece_CivCards9</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_10.png">
+                <piece>piece_CivCards10</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_11.png">
+                <piece>piece_CivCards11</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_12.png">
+                <piece>piece_CivCards12</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_13.png">
+                <piece>piece_CivCards13</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_14.png">
+                <piece>piece_CivCards14</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_15.png">
+                <piece>piece_CivCards15</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_16.png">
+                <piece>piece_CivCards16</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_17.png">
+                <piece>piece_CivCards17</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_18.png">
+                <piece>piece_CivCards18</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_19.png">
+                <piece>piece_CivCards19</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_20.png">
+                <piece>piece_CivCards20</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_21.png">
+                <piece>piece_CivCards21</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_22.png">
+                <piece>piece_CivCards22</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_23.png">
+                <piece>piece_CivCards23</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_24.png">
+                <piece>piece_CivCards24</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_25.png">
+                <piece>piece_CivCards25</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_26.png">
+                <piece>piece_CivCards26</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_27.png">
+                <piece>piece_CivCards27</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_28.png">
+                <piece>piece_CivCards28</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_29.png">
+                <piece>piece_CivCards29</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_30.png">
+                <piece>piece_CivCards30</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_31.png">
+                <piece>piece_CivCards31</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_32.png">
+                <piece>piece_CivCards32</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_33.png">
+                <piece>piece_CivCards33</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_34.png">
+                <piece>piece_CivCards34</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_35.png">
+                <piece>piece_CivCards35</piece>
+              </sides>
+              <sides paths="Stone Age_Image_CivCards_Back.png,Stone Age_Image_CivCards_36.png">
+                <piece>piece_CivCards36</piece>
+              </sides>
+            </initial_side>
+          </initial_rotation>
+        </initial_location>
+        <initial_location name="loc_huts_draw">
+          <initial_rotation value="0">
+            <initial_side value="0">
+              <sides paths="Stone Age_Image_Huts_1.png">
+                <piece>piece_Huts1</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_2.png">
+                <piece>piece_Huts2</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_3.png">
+                <piece>piece_Huts3</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_4.png">
+                <piece>piece_Huts4</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_5.png">
+                <piece>piece_Huts5</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_6.png">
+                <piece>piece_Huts6</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_7.png">
+                <piece>piece_Huts7</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_8.png">
+                <piece>piece_Huts8</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_9.png">
+                <piece>piece_Huts9</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_10.png">
+                <piece>piece_Huts10</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_11.png">
+                <piece>piece_Huts11</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_12.png">
+                <piece>piece_Huts12</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_13.png">
+                <piece>piece_Huts13</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_14.png">
+                <piece>piece_Huts14</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_15.png">
+                <piece>piece_Huts15</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_16.png">
+                <piece>piece_Huts16</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_17.png">
+                <piece>piece_Huts17</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_18.png">
+                <piece>piece_Huts18</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_19.png">
+                <piece>piece_Huts19</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_20.png">
+                <piece>piece_Huts20</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_21.png">
+                <piece>piece_Huts21</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_22.png">
+                <piece>piece_Huts22</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_23.png">
+                <piece>piece_Huts23</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_24.png">
+                <piece>piece_Huts24</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_25.png">
+                <piece>piece_Huts25</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_26.png">
+                <piece>piece_Huts26</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_27.png">
+                <piece>piece_Huts27</piece>
+              </sides>
+              <sides paths="Stone Age_Image_Huts_28.png">
+                <piece>piece_Huts28</piece>
+              </sides>
+            </initial_side>
+          </initial_rotation>
+        </initial_location>
+      </quad_tap>
+    </triple_tap>
+  </single_tap>
+  <!--End Hut/Civ Card Pieces-->
+  <!---->
+  <!---->
+  <!--Begin Tool Pieces-->
+  <single_tap action="increment_rotation" args="180">
+    <double_tap action="increment_side" args="wrap">
+      <initial_location name="loc_tool_1">
+        <sides paths="Stone Age_Image_Tools_1_x12_s1.png,Stone Age_Image_Tools_1_x12_s2.png">
+          <piece count="12">Image_Tools_1_x12</piece>
+        </sides>
+      </initial_location>
+      <initial_location name="loc_tool_2">
+        <sides paths="Stone Age_Image_Tools_3_x6_s1.png,Stone Age_Image_Tools_3_x6_s2.png">
+          <piece count="6">Image_Tools_3_x6</piece>
+        </sides>
+      </initial_location>
+    </double_tap>
+  </single_tap>
+  <!--End Tool Pieces-->
+  <!---->
+  <!---->
+  <!--Begin Main Canvas in locations to start with (meeple, food) Pieces-->
+  <initial_location name="loc_meeple_blue">
+    <sides paths="Stone Age_Image_Player_Blue_Meeple.png">
+      <piece count="10">Image_Player_Blue_Meeple.png</piece>
+    </sides>
+  </initial_location>
+  <initial_location name="loc_meeple_red">
+    <sides paths="Stone Age_Image_Player_Red_Meeple.png">
+      <piece count="10">Image_Player_Red_Meeple.png</piece>
+    </sides>
+  </initial_location>
+  <initial_location name="loc_food_10">
+    <sides paths="Stone Age_Image_Food_10_x9.png">
+      <piece count="9">Image_Food_10_x9.png</piece>
+    </sides>
+  </initial_location>
+  <initial_location name="loc_food_5">
+    <sides paths="Stone Age_Image_Food_5_x12.png">
+      <piece count="12">Image_Food_5_x12.png</piece>
+    </sides>
+  </initial_location>
+  <initial_location name="loc_food_2">
+    <sides paths="Stone Age_Image_Food_2_x16.png">
+      <piece count="16">Image_Food_2_x16.png</piece>
+    </sides>
+  </initial_location>
+  <initial_location name="loc_food_1">
+    <sides paths="Stone Age_Image_Food_1_x16.png">
+      <piece count="16">Image_Food_1_x16.png</piece>
+    </sides>
+  </initial_location>
+  <!--End Main Canvas in locations to start with Pieces-->
+  <!---->
+  <!---->
+  <!--Begin Main Canvas in free location to start with (resources, food track, first player) Pieces-->
+  <initial_location name="MainCanvas">
+    <sides paths="Stone Age_Image_Resource_Gold_x10.png">
+      <piece count="10">Image_Resource_Gold_x10.png</piece>
+    </sides>
+    <sides paths="Stone Age_Image_Resource_Wood_x20.png">
+      <piece count="20">Image_Resource_Wood_x20.png</piece>
+    </sides>
+    <sides paths="Stone Age_Image_Resource_Stone_x12.png">
+      <piece count="12">Image_Resource_Stone_x12.png</piece>
+    </sides>
+    <sides paths="Stone Age_Image_Resource_Clay_x16.png">
+      <piece count="16">Image_Resource_Clay_x16.png</piece>
+    </sides>
+    <sides paths="Stone Age_Image_Player_Blue_FoodTrack.png">
+      <piece count="1">Image_Player_Blue_FoodTrack.png</piece>
+    </sides>
+    <sides paths="Stone Age_Image_Player_Red_FoodTrack.png">
+      <piece count="1">Image_Player_Red_FoodTrack.png</piece>
+    </sides>
+    <sides paths="Stone Age_Image_FirstPlayer.png">
+      <piece count="1">Image_FirstPlayer.png</piece>
+    </sides>
+  </initial_location>
+  <!--End Main Canvas in free location to start with Pieces-->
+  <!---->
+  <!---->
+  <!--Begin Dice Pieces-->
+  <draggable value="0">
+    <single_tap action="random_side" args="v2">
+      <sides paths="Stone Age_Image_Dice1.png,Stone Age_Image_Dice2.png,Stone Age_Image_Dice3.png,Stone Age_Image_Dice4.png,Stone Age_Image_Dice5.png,Stone Age_Image_Dice6.png">
+        <initial_location name="loc_dice_0_0">
+          <piece>piece_dice_1</piece>
+        </initial_location>
+        <initial_location name="loc_dice_1_0">
+          <piece>piece_dice_2</piece>
+        </initial_location>
+        <initial_location name="loc_dice_2_0">
+          <piece>piece_dice_3</piece>
+        </initial_location>
+        <initial_location name="loc_dice_3_0">
+          <piece>piece_dice_4</piece>
+        </initial_location>
+        <initial_location name="loc_dice_4_0">
+          <piece>piece_dice_5</piece>
+        </initial_location>
+        <initial_location name="loc_dice_5_0">
+          <piece>piece_dice_6</piece>
+        </initial_location>
+        <initial_location name="loc_dice_6_0">
+          <piece>piece_dice_7</piece>
+        </initial_location>
+      </sides>
+    </single_tap>
+    <single_tap action="random_side" args="v2,0_1_2_3_4_5,piece_dice_1">
+      <single_tap action="random_side" args="v2,0_1_2_3_4_5,piece_dice_2">
+        <single_tap action="random_side" args="v2,0_1_2_3_4_5,piece_dice_3">
+          <single_tap action="random_side" args="v2,0_1_2_3_4_5,piece_dice_4">
+            <single_tap action="random_side" args="v2,0_1_2_3_4_5,piece_dice_5">
+              <single_tap action="random_side" args="v2,0_1_2_3_4_5,piece_dice_6">
+                <single_tap action="random_side" args="v2,0_1_2_3_4_5,piece_dice_7">
+                  <sides paths="Stone Age_Image_Dice_Roller.png">
+                    <initial_location name="loc_dice_roller">
+                      <piece>piece_dice_roller</piece>
+                    </initial_location>
+                  </sides>
+                </single_tap>
+              </single_tap>
+            </single_tap>
+          </single_tap>
+        </single_tap>
+      </single_tap>
+    </single_tap>
+  </draggable>
+  <!--End Dice Pieces-->
+</game>

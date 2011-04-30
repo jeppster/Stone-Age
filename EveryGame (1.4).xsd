@@ -1,0 +1,732 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:attribute name="action">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="increment_side"/>
+        <xs:enumeration value="decrement_side"/>
+        <xs:enumeration value="set_side"/>
+        <xs:enumeration value="random_side"/>
+        <xs:enumeration value="random_side_at_location"/>
+        <xs:enumeration value="move_piece"/>
+        <xs:enumeration value="move_piece_at_location"/>
+        <xs:enumeration value="send_to_back"/>
+        <xs:enumeration value="shuffle_location"/>
+        <xs:enumeration value="increment_score"/>
+        <xs:enumeration value="decrement_score"/>
+        <xs:enumeration value="set_score"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+  
+  
+  <xs:element name="game">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="xml_version" type="xs:decimal" use="required">
+        <xs:annotation><xs:documentation>"Version of the program needed to view this xml file"</xs:documentation></xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  
+  
+  <xs:element name="single_tap">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute ref="action" use="required">
+        <xs:annotation>
+          <xs:documentation>
+            action=[string]<br/><br/>
+            "increment_side"<br/>
+            args=[comma separated string]<br/>
+            "wrap" (default cap) <br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "decrement_side"<br/>
+            args=[comma separated string]<br/>
+            "wrap" (default cap)<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "set_side"<br/>
+            args=[comma separated string]<br/>
+            "int" (side to set to)<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "random_side"<br/>
+            args=[comma separated string]<br/>
+            "v2" (first argument of 'v2' specifies new format."<br/>
+            "underscore separated int list" (ie "2_3_4", random sides to choose
+            between. default=all.)<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "random_side_at_location"<br/>
+            args=[comma separated string]<br/>
+            "location in which to randomize piece"<br/>
+            "underscore separated int list" (ie "2_3_4", random sides to choose
+            between. default=all.)<br/><br/>
+            "move_piece"<br/>
+            args=[comma separated string]<br/>
+            "location name to move piece to"<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "move_piece_at_location"<br/>
+            args=[comma separated string]<br/>
+            "location name to move piece from"<br/>
+            "location name to move piece to." (optional, Default same as piece)<br/><br/>
+            "send_to_back"<br/>
+            args=[comma separated string]<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/>
+            Moves piece to the bottom of its stack or queue<br/><br/>
+            "shuffle_location"<br/>
+            args: No args<br/><br/>
+            "increment_score"<br/>
+            args: [comma separated string]<br/>
+            "point value to add to piece's score field" (Default 1)<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "decrement_score"<br/>
+            args: [comma separated string]<br/>
+            "point value to subtract for piece's score field" (Default 1)<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "set_score"<br/>
+            args: [comma separated string]<br/>
+            "point value to set piece's score field to" (Default 1)<br/>
+            "target" (name of a piece to apply to.  Default self.)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="args" type="xs:string" use="optional" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="double_tap">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute ref="action" use="required">
+        <xs:annotation>
+          <xs:documentation>
+            action=[string]<br/><br/>
+            "increment_side"<br/>
+            args=[comma separated string]<br/>
+            "wrap" (default cap) <br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "decrement_side"<br/>
+            args=[comma separated string]<br/>
+            "wrap" (default cap)<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "set_side"<br/>
+            args=[comma separated string]<br/>
+            "int" (side to set to)<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "random_side"<br/>
+            args=[comma separated string]<br/>
+            "v2" (first argument of 'v2' specifies new format."<br/>
+            "underscore separated int list" (ie "2_3_4", random sides to choose
+            between. default=all.)<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "random_side_at_location"<br/>
+            args=[comma separated string]<br/>
+            "location in which to randomize piece"<br/>
+            "underscore separated int list" (ie "2_3_4", random sides to choose
+            between. default=all.)<br/><br/>
+            "move_piece"<br/>
+            args=[comma separated string]<br/>
+            "location name to move piece to"<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "move_piece_at_location"<br/>
+            args=[comma separated string]<br/>
+            "location name to move piece from"<br/>
+            "location name to move piece to." (optional, Default same as piece)<br/><br/>
+            "send_to_back"<br/>
+            args=[comma separated string]<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/>
+            Moves piece to the bottom of its stack or queue<br/><br/>
+            "shuffle_location"<br/>
+            args: No args<br/><br/>
+            "increment_score"<br/>
+            args: [comma separated string]<br/>
+            "point value to add to piece's score field" (Default 1)<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "decrement_score"<br/>
+            args: [comma separated string]<br/>
+            "point value to subtract for piece's score field" (Default 1)<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "set_score"<br/>
+            args: [comma separated string]<br/>
+            "point value to set piece's score field to" (Default 1)<br/>
+            "target" (name of a piece to apply to.  Default self.)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="args" type="xs:string" use="optional" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="triple_tap">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute ref="action" use="required">
+        <xs:annotation>
+          <xs:documentation>
+            action=[string]<br/><br/>
+            "increment_side"<br/>
+            args=[comma separated string]<br/>
+            "wrap" (default cap) <br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "decrement_side"<br/>
+            args=[comma separated string]<br/>
+            "wrap" (default cap)<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "set_side"<br/>
+            args=[comma separated string]<br/>
+            "int" (side to set to)<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "random_side"<br/>
+            args=[comma separated string]<br/>
+            "v2" (first argument of 'v2' specifies new format."<br/>
+            "underscore separated int list" (ie "2_3_4", random sides to choose
+            between. default=all.)<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "random_side_at_location"<br/>
+            args=[comma separated string]<br/>
+            "location in which to randomize piece"<br/>
+            "underscore separated int list" (ie "2_3_4", random sides to choose
+            between. default=all.)<br/><br/>
+            "move_piece"<br/>
+            args=[comma separated string]<br/>
+            "location name to move piece to"<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "move_piece_at_location"<br/>
+            args=[comma separated string]<br/>
+            "location name to move piece from"<br/>
+            "location name to move piece to." (optional, Default same as piece)<br/><br/>
+            "send_to_back"<br/>
+            args=[comma separated string]<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/>
+            Moves piece to the bottom of its stack or queue<br/><br/>
+            "shuffle_location"<br/>
+            args: No args<br/><br/>
+            "increment_score"<br/>
+            args: [comma separated string]<br/>
+            "point value to add to piece's score field" (Default 1)<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "decrement_score"<br/>
+            args: [comma separated string]<br/>
+            "point value to subtract for piece's score field" (Default 1)<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "set_score"<br/>
+            args: [comma separated string]<br/>
+            "point value to set piece's score field to" (Default 1)<br/>
+            "target" (name of a piece to apply to.  Default self.)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="args" type="xs:string" use="optional" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="quad_tap">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute ref="action" use="required">
+        <xs:annotation>
+          <xs:documentation>
+            action=[string]<br/><br/>
+            "increment_side"<br/>
+            args=[comma separated string]<br/>
+            "wrap" (default cap) <br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "decrement_side"<br/>
+            args=[comma separated string]<br/>
+            "wrap" (default cap)<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "set_side"<br/>
+            args=[comma separated string]<br/>
+            "int" (side to set to)<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "random_side"<br/>
+            args=[comma separated string]<br/>
+            "v2" (first argument of 'v2' specifies new format."<br/>
+            "underscore separated int list" (ie "2_3_4", random sides to choose
+            between. default=all.)<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "random_side_at_location"<br/>
+            args=[comma separated string]<br/>
+            "location in which to randomize piece"<br/>
+            "underscore separated int list" (ie "2_3_4", random sides to choose
+            between. default=all.)<br/><br/>
+            "move_piece"<br/>
+            args=[comma separated string]<br/>
+            "location name to move piece to"<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "move_piece_at_location"<br/>
+            args=[comma separated string]<br/>
+            "location name to move piece from"<br/>
+            "location name to move piece to." (optional, Default same as piece)<br/><br/>
+            "send_to_back"<br/>
+            args=[comma separated string]<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/>
+            Moves piece to the bottom of its stack or queue<br/><br/>
+            "shuffle_location"<br/>
+            args: No args<br/><br/>
+            "increment_score"<br/>
+            args: [comma separated string]<br/>
+            "point value to add to piece's score field" (Default 1)<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "decrement_score"<br/>
+            args: [comma separated string]<br/>
+            "point value to subtract for piece's score field" (Default 1)<br/>
+            "target" (name of a piece to apply to.  Default self.)<br/><br/>
+            "set_score"<br/>
+            args: [comma separated string]<br/>
+            "point value to set piece's score field to" (Default 1)<br/>
+            "target" (name of a piece to apply to.  Default self.)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="args" type="xs:string" use="optional" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="piece_type">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="type" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation> type = [string]<br/> Identifier that must match location's valid_types</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sides">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="paths" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation>
+            paths = [string list]<br/>
+            "A list of file names"
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="initial_side">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="value" use="required">
+        <xs:annotation>
+          <xs:documentation>value = [int]</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:integer">
+            <xs:minInclusive value="0"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="points">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="value" type="xs:integer" use="required">
+        <xs:annotation>
+          <xs:documentation>value = [int]</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="draggable">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="value" use="required">
+        <xs:annotation>
+          <xs:documentation>
+            (version 1.1)<br/>
+            value = [int]<br/>
+            "0: Not draggable.  1: draggable (default)"
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:integer">
+            <xs:pattern value="0|1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="initial_location">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation>
+            name = [string]<br/>
+            "The name of a location"
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="capture_location">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation>
+            (version 1.1)<br/>
+            name = [string]<br/>
+            "The name of a location or 'swap'.  If moved to an occupied cell, piece<br/>
+            currently in the cell will move here"<br/>
+            "If name='swap', the two pieces will trade spaces instead.  Takes<br/>
+            precedence over bounce_location"
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="bounce_location">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation>
+            (version 1.1)<br/>
+            name = [string]<br/>
+            "The name of a location or 'swap'.  Piece will move here if in a cell,<br/>
+            and another piece moves in"<br/>
+            "If name='swap', the two pieces will trade spaces instead"
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  
+  
+  <xs:element name="valid_types">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="types" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation>
+            types = [string list]<br/>
+            "List of identifiers that one of which must match piece"
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="corner_coord">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="board" use="required">
+        <xs:annotation>
+          <xs:documentation>board = [int]</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:integer">
+            <xs:minInclusive value="0"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="x" type="xs:integer" use="required">
+        <xs:annotation>
+          <xs:documentation>x = [int]</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="y" type="xs:integer" use="required">
+        <xs:annotation>
+          <xs:documentation>y = [int]</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="size">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="width" use="required">
+        <xs:annotation>
+          <xs:documentation>width = [int]</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:integer">
+            <xs:minExclusive value="0"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="height" use="required">
+        <xs:annotation>
+          <xs:documentation>height = [int]</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:integer">
+            <xs:minExclusive value="0"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="location_type">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="type" use="required">
+        <xs:annotation>
+          <xs:documentation>
+            type = [string]<br/>
+            "stack": Holds many pieces, inserted pieces added to top<br/>
+            "queue": Holds many pieces, inserted pieces add to bottom<br/>
+            "cell": Holds one piece<br/>
+            "free": Holds many pieces, pieces may be freely dragged around location
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="stack"/>
+            <xs:enumeration value="queue"/>
+            <xs:enumeration value="cell"/>
+            <xs:enumeration value="free"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="location_display">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="type" use="required">
+        <xs:annotation>
+          <xs:documentation>
+            type = [string]<br/>
+            "no_display" (default)<br/>
+            "count" (number of contained pieces)<br/>
+            "score" (score fields of all contained pieces added together)<br/>
+            "name"  (of location)<br/>
+            "piece" (name of piece)
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="no_display"/>
+            <xs:enumeration value="count"/>
+            <xs:enumeration value="score"/>
+            <xs:enumeration value="name"/>
+            <xs:enumeration value="piece"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="show_empty" use="optional">
+        <xs:annotation>
+          <xs:documentation>
+            show_empty = [int]<br/>
+            "0: No display on empty.  1: display when empty (default)"
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:integer">
+            <xs:pattern value="0|1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="font_size" use="optional">
+        <xs:annotation>
+          <xs:documentation>
+            font_size = [int]<br/>
+            (default 42)
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:integer">
+            <xs:minInclusive value="0"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="font_color" use="optional">
+        <xs:annotation>
+          <xs:documentation>
+            font_color = [int,int,int]<br/>
+            "Three comma separated ints for RGB value.  Range 0-255 (default "0,0,0")"
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:integer">
+            <xs:pattern value="[0-9]*,[0-9]*,[0-9]*"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="offset_x" type="xs:integer" use="optional">
+        <xs:annotation>
+          <xs:documentation>
+            offset_x = [int]<br/>
+            "horizontal pixel offset from center" (default 0)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="offset_y" type="xs:integer" use="optional">
+        <xs:annotation>
+          <xs:documentation>
+            offset_y = [int]<br/>
+            "vertical pixel offset from center" (default 0)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="location_in_action">
+    <xs:annotation><xs:documentation>"This action performed on pieces dragged to/from tagged location"</xs:documentation></xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute ref="action" use="required">
+        <xs:annotation>
+          <xs:documentation>
+            action=[string]<br/>
+            See single_tap
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="args" type="xs:string" use="optional" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="location_out_action">
+    <xs:annotation><xs:documentation>"This action performed on pieces dragged to/from tagged location"</xs:documentation></xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute ref="action" use="required">
+        <xs:annotation>
+          <xs:documentation>
+            action=[string]<br/>
+            See single_tap
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="args" type="xs:string" use="optional" />
+    </xs:complexType>
+  </xs:element>
+
+
+  <xs:element name="piece">
+    <xs:annotation><xs:documentation>"Create a Piece named ..."</xs:documentation></xs:annotation>
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="count" use="optional">
+            <xs:annotation>
+              <xs:documentation>
+                count = [int], optional<br/>
+                If count provide makes [int] copies, each called name_[int]"
+              </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="xs:integer">
+                <xs:minInclusive value="1"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="location">
+    <xs:annotation><xs:documentation>"Create a Location named ..."</xs:documentation></xs:annotation>
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="rows" use="optional">
+            <xs:annotation>
+              <xs:documentation>
+                rows = [int], optional<br/>
+                If rows/cols provided makes a grid of locations, each called name_[col]_[row]"
+              </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="xs:integer">
+                <xs:minInclusive value="1"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="cols" use="optional">
+            <xs:annotation>
+              <xs:documentation>
+                cols = [int], optional<br/>
+                If rows/cols provided makes a grid of locations, each called name_[col]_[row]"
+              </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="xs:integer">
+                <xs:minInclusive value="1"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="board">
+    <xs:annotation><xs:documentation>
+      "Create a Board named ...<br/>
+      The first Board is shown as the game background.  Further Boards show up as tabs"
+    </xs:documentation></xs:annotation>
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="edge" use="optional">
+            <xs:annotation>
+              <xs:documentation>
+                edge = [int]<br/>
+                "Screen edge to position tab. 3: The edge with the Options tab, 2,1,0 continue<br/>
+                counter-clockwise"
+              </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="xs:integer">
+                <xs:pattern value="[0-3]"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="position" type="xs:decimal" use="optional">
+            <xs:annotation>
+              <xs:documentation>
+                position = [float]<br/>
+                "Distance along screen edge to position tab.  0: corner nearest previous index,<br/>
+                1.0: corner nearest next index.  (Default 0.8 as 1.0 is completely off screen)"
+              </xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  
+  
+  
+</xs:schema>
